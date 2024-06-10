@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package ecommerce;
+
+service OrderManagement {
+    rpc addOrder(Order) returns (StringMessage);
+    rpc getOrder(StringMessage) returns (Order);
+    rpc searchOrders(StringMessage) returns (stream Order);
+    rpc processOrders(stream Order) returns (stream CombinedShipment);
+    rpc cancelShipment(StringMessage) returns (StringMessage);
+}
+
+message Order {
+    string id = 1;
+    
+    // repeated è usato per rappresentare i campi che possono essere ripetuti un numero qualsiasi di volte, 
+    // compreso lo zero, in un messaggio. 
+    // In questo esempio, un messaggio Order può avere un numero qualsiasi di stringhe items.
+    
+    repeated string items = 2;
+    
+    string description = 3;
+    float price = 4;
+    string destination = 5;
+}
+
+message CombinedShipment {
+    string id = 1;
+    string status = 2;
+
+    // Un messaggio CombinedShipment può avere un numero qualsiasi di Order orders.
+    repeated Order orders = 3;
+}
+
+message StringMessage {
+    string value = 1;
+}

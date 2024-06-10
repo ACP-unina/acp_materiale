@@ -1,0 +1,7 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "/Users/ldesi/apache-activemq-5.16.6/activemq-all-5.16.6.jar"
+    ]
+}

@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  web:
+    image: flask_image_hello_world
+    ports:
+      - '5001:5001'
+    deploy:
+     replicas: 5
+     update_config:
+       parallelism: 5
+       delay: 10s
+     restart_policy:
+       condition: on-failure
+       max_attempts: 3
+       window: 120s

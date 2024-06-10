@@ -1,0 +1,13 @@
+{% if name %}
+    <h1>Hello, {{ name }}!</h1>
+    <ul>
+        {% for element in elements %}
+            <li>{{ element }}</li>
+        {% endfor %}
+    </ul>
+
+    <p>A value from the list: {{ elements[0] }}.</p>
+    
+{% else %}
+    <h1>Hello, Stranger!</h1>
+{% endif %}

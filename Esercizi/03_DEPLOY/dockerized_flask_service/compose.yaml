@@ -1,0 +1,6 @@
+services: 
+  web: 
+    build:
+     context: app
+    ports: 
+      - '5001:5001'
