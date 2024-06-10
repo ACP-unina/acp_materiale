@@ -5,3 +5,6 @@ urllib3==1.26.6
 requests==2.31
 Flask>=3.0
 pymongo
+matplotlib
+pandas
+sklearn
