@@ -18,17 +18,27 @@ Scegliere la versione in base al proprio SO ([https://www.java.com/it/download/m
 
 #### VSCodium 
 
-Installare VSCodium e le relative estensioni per lo sviluppo in Python e Java.
+VSCodium ([https://vscodium.com/](https://vscodium.com/)) è l'IDE utilizzato durante il corso. Installare VSCodium in base al proprio SO e le relative estensioni per lo sviluppo di tutti gli esercizi.
 
-- Code Runner (formulahendry)
-- Jupyter (ms-toolsai)
-- Jupyter Cell Tags (ms-toolsai)
-- Jupyter Keymap (ms-toolsai)
-- Jupyter Notebook Renderers (ms-toolsai)
-- Jupyter Slide Show (ms-toolsai)
-- Python (ms-python)
-- Python Debugger (ms-python)
+- **Python**
+  -   ms-python.python
+  -   ms-toolsai.jupyter
+  -   ms-toolsai.vscode-jupyter-cell-tags
+  -   ms-toolsai.jupyter-keymap
+  -   ms-toolsai.vscode-jupyter-slideshow
+  -   ms-toolsai.jupyter-renderers
 
+- **Java**
+  -   vscjava.vscode-java-debug
+  -   vscjava.vscode-java-pack
+  -   redhat.java
+  -   vscjava.vscode-maven
+  -   vscjava.vscode-java-dependency
+
+- **MongoDB**
+  -   mongodb.mongodb-vscode
+
+  
 #### Installazione MongoDB
 
 ##### Linux
