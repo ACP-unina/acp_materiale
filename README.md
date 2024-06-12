@@ -38,6 +38,9 @@ VSCodium ([https://vscodium.com/](https://vscodium.com/)) è l'IDE utilizzato du
 - **MongoDB**
   -   mongodb.mongodb-vscode
 
+- **Protobuf**
+  -   zxh404.vscode-proto3  
+
   
 #### Installazione MongoDB
 
@@ -57,3 +60,9 @@ Avviare lo script di utilità [install_mongodb.sh](install_mongodb.sh):
 # brew install mongodb-community@6.0
 # brew services start mongodb-community@6.0
 ```
+
+
+#### Installazione ActiveMQ 
+
+Installare la ActiveMQ 5.16.6 disponibile a questo [link](https://activemq.apache.org/components/classic/download/classic-05-16-06). 
+Scegliere la versione in base al propio SO.
