@@ -8,3 +8,4 @@ pymongo
 matplotlib
 pandas
 sklearn
+multiprocess
