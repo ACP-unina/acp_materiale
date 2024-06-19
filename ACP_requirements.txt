@@ -7,5 +7,4 @@ Flask>=3.0
 pymongo
 matplotlib
 pandas
-sklearn
 multiprocess
