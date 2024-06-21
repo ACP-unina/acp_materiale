@@ -37,7 +37,7 @@ N.B.: La dashboard è disponibile solo dopo aver avviato ActiveMQ
 
 * Per la compilazione, posizionarsi nella cartella che contiene il file .proto ed utilizzare il seguente comando: ``python -m grpc_tools.protoc -I. --python_out=. --pyi_out=. --grpc_python_out=. ./nome_file.proto``
 
-* Per creare un server, generando un'eccezione se il porto è goià utilizzato, immettere la segente opzione nella creazione del server GRPC: ``options=(('grpc.so_reuseport', 0),)``
+* Per creare un server, generando un'eccezione se il porto è già utilizzato, immettere la segente opzione nella creazione del server GRPC: ``options=(('grpc.so_reuseport', 0),)``
 
 
 ### Flask
@@ -53,7 +53,7 @@ N.B.: La dashboard è disponibile solo dopo aver avviato ActiveMQ
 
 ### Creazione ZIP file per upload su github classroom
 * Aprire un terminale
-* Posizionarsi (utilizzando il comando ``cd``) nel path che contiene la cartella con il codice svluppato
+* Posizionarsi (utilizzando il comando ``cd``) nel path che contiene la cartella con il codice sviluppato
 * Digitare il seguente comando
 ``zip -r NOME_COGNOME_MATRICOLA_DOCENTE.zip NOME_CARTELLA_CODICE``
 
