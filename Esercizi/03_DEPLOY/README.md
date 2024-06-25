@@ -277,10 +277,10 @@ root@dockertest1:~#
 ```
 
 You can see that is running an instance of flask_helloworld_service service (the Flask application) on each node in the testbed.
-By running the following command ``while True; do curl http://192.168.100.101:5001/; echo; sleep 1; done`` we make HTTP requests only towards the manager node (dockertest1: 192.168.100.101:5001). We can observe that Docker Swarm automatically balances requests towards service replicas.
+By running the following command ``while true; do curl http://192.168.100.101:5001/; echo; sleep 1; done`` we make HTTP requests only towards the manager node (dockertest1: 192.168.100.101:5001). We can observe that Docker Swarm automatically balances requests towards service replicas.
 
 ```
-# while True; do curl http://192.168.100.101:5001/; echo; sleep 1; done                                                                                           
+# while true; do curl http://192.168.100.101:5001/; echo; sleep 1; done                                                                                           
 This is an example Flask app served from 20d293bc9fb8 to 10.0.0.2
 This is an example Flask app served from 7e9d169241d3 to 10.0.0.2
 This is an example Flask app served from 66b6d787a2cd to 10.0.0.2
@@ -329,7 +329,7 @@ root@dockertest1:~#
 The _flask_helloworld_service.2_ is in a Shutdown state on _dockertest2_ node and it is in a _Running_ state on _dockertest1_ node (the first available in the swarm). In the meanwhile, the service availability is kept, and the Swarm manager keeps the desired state (3 running instances). Indeed, by running again _test_nginx.sh_ script, you can notice that there are still 3 replicas responses:
 
 ```
-# while True; do curl http://192.168.100.101:5001/; echo; sleep 1; done                                                                                 
+# while true; do curl http://192.168.100.101:5001/; echo; sleep 1; done                                                                                 
 This is an example Flask app served from 66b6d787a2cd to 10.0.0.2
 This is an example Flask app served from b1701656b1b6 to 10.0.0.2
 This is an example Flask app served from 20d293bc9fb8 to 10.0.0.2
