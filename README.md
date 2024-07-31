@@ -68,6 +68,8 @@ Avviare lo script di utilità [install_mongodb.sh](install_mongodb.sh):
 # ./install_mongodb.sh
 ```
 
+N.B.: lo script di utilità è valido solo per una distribuzione Debian 12. Per l'installazione di MongoDB su altre distribuzione consultare il sito ufficiale [https://www.mongodb.com/docs/manual/tutorial/](https://www.mongodb.com/docs/manual/tutorial/)
+
 ##### Mac OSX
 
 ```
