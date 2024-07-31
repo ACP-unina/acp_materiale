@@ -2,13 +2,28 @@
 
 ### Installazione dei prerequisiti
 
+```
+sudo apt install -y build-essential git gdb manpages-posix manpages-dev manpages-posix-dev vim
+```
+
 #### Python
 
-Installare l'interprete Python seguendo le guide ufficiali per il proprio SO. 
+Installare l'interprete Python seguendo le guide ufficiali per il proprio SO. Per un sistema Debian-based basta installare:
+```
+sudo apt update
+sudo apt install python3 python3-dev python-is-python3 python3-pip
+```
+
 Successivamente installare tutti i package pre-requisiti utilizzando il file [ACP_requirements.txt](ACP_requirements.txt)
 
-```
+```ACP_requirements.txt
 $ pip install -r ACP_requirements.txt
+```
+
+N.B.: in alcune distribuzioni recenti di Linux, pip non può essere utilizzato se non all'interno di un venv. Per avviare lo stesso l'installazione utilizzare il seguente comando:
+
+```
+$ pip install -r ACP_requirements.txt -U --user --force-reinstall --break-system-packages
 ```
 
 #### Java
@@ -41,6 +56,7 @@ VSCodium ([https://vscodium.com/](https://vscodium.com/)) è l'IDE utilizzato du
 - **Protobuf**
   -   zxh404.vscode-proto3  
 
+Usare il comando ``codium --install-extension``per installare le estensioni a linea di comando.
   
 #### Installazione MongoDB
 
