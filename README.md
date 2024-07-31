@@ -3,7 +3,7 @@
 ### Installazione dei prerequisiti
 
 ```
-sudo apt install -y build-essential git gdb manpages-posix manpages-dev manpages-posix-dev vim
+sudo apt install -y build-essential git gdb manpages-posix manpages-dev manpages-posix-dev vim pkg-config cmake libdbus-glib-1-dev
 ```
 
 #### Python
