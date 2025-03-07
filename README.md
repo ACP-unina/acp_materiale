@@ -35,6 +35,9 @@ Scegliere la versione in base al proprio SO ([https://www.java.com/it/download/m
 
 VSCodium ([https://vscodium.com/](https://vscodium.com/)) è l'IDE utilizzato durante il corso. Installare VSCodium in base al proprio SO e le relative estensioni per lo sviluppo di tutti gli esercizi.
 
+- **Code Runner**
+  -   formulahendry.code-runner
+    
 - **Python**
   -   ms-python.python
   -   ms-toolsai.jupyter
