@@ -1,4 +1,4 @@
-#### ESERCIZIO PROD_CONS con SEMAFORI
+#### ESERCIZIO PROD_CONS con SEMAFORI con MULTITHREADING
 
 import logging
 import threading
@@ -26,10 +26,10 @@ def make_an_item_available(queue):
 
 class consumerThread(threading.Thread):
     
-    def __init__(self, mutex, empty, full, queue, name):
+    def __init__(self, mutex_C, empty, full, queue, name):
 
         threading.Thread.__init__(self, name=name)
-        self.mutex = mutex
+        self.mutex_C = mutex_C
         self.empty = empty
         self.full = full
         self.queue = queue
@@ -43,7 +43,8 @@ class consumerThread(threading.Thread):
         self.full.acquire() ### full == -1 se entra per primo il consumatore
 
         ### mutex.acquire()
-        with self.mutex: ### entrerò se mutex>=0
+        with self.mutex_C: ### entrerò se mutex>=0, lockare il mutex prima dell'acquire di empty è un errore perchè non consentiamo consumazioni di elementi consumabili
+            
             logging.debug('\t\t\tAcquired mutex')
         
             time.sleep(1.0)
@@ -58,15 +59,14 @@ class consumerThread(threading.Thread):
         
         logging.debug('\t\t\tReleased empty semaphore')
 
-
-def produce_one_item(mutex, empty, full, queue):
+def produce_one_item(mutex_P, empty, full, queue):
     logging.debug('Started')
 
     logging.debug('Checking empty semaphore...')
 
     empty.acquire() ### empty = 4 se sono il primo prod ad entrare
 
-    with mutex:
+    with mutex_P: # lockare il mutex prima dell'acquire di empty è un errore perchè non consentiamo produzione di elementi producibili
         logging.debug('Acquired mutex')
 
         time.sleep(1.0)
@@ -77,6 +77,7 @@ def produce_one_item(mutex, empty, full, queue):
         logging.debug('Release mutex')
         
     full.release() ## avviserò i consumatori che sono in attesa, che possono consumare
+
     logging.debug('Released full semaphore')
 
 
@@ -85,10 +86,12 @@ def main():
     # generating the queue, coda fatta con una list
     queue = [] 
 
-    # generating the semaphores
-    mutex = threading.Semaphore() ### =1 mutua esclusione tra i diversi prod e cons
-    empty = threading.Semaphore(QUEUE_SIZE) ### semaforo per la produzione, inizializzato a QUEUE_SIZE
-    full = threading.Semaphore(0) ### semaforo per la consumazione, inizializzato a 0
+    # Creiamo i semafori per gestire il problem prod/cons multipli
+    mutex_P = threading.Semaphore() ### = 1 mutua esclusione tra i diversi prod durante la produzione
+    mutex_C = threading.Semaphore() ### = 1 mutua esclusione tra i diversi cons durante la consumazione
+    
+    empty = threading.Semaphore(QUEUE_SIZE) ### semaforo per la produzione, inizializzato a QUEUE_SIZE (N produttori possono produrre)
+    full = threading.Semaphore(0) ### semaforo per la consumazione, inizializzato a 0 (NON POSSO CONSUMARE ALL'inizio)
 
     consumers = []
     producers = []
@@ -98,7 +101,8 @@ def main():
         
         name=CONSUMER+str(i)
 
-        ct = consumerThread(mutex, empty, full, queue, name)
+        # creazione del thread con estensione della classe Thread
+        ct = consumerThread(mutex_C, empty, full, queue, name)
         ct.start()
 
         consumers.append(ct)
@@ -107,8 +111,9 @@ def main():
     # generating the producers
     for i in range (N_PRODUCERS):
 
+        # creazione del thread con callable object (func)
         pt = threading.Thread(target=produce_one_item, name=PRODUCER+str(i),
-                                args=(mutex, empty, full, queue),)
+                                args=(mutex_P, empty, full, queue),)
 
         pt.start()
 
@@ -130,4 +135,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
