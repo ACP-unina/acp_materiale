@@ -58,11 +58,13 @@ class OrderManagementServicer(order_management_pb2_grpc.OrderManagementServicer)
         request.id = str(id)
         self.orderDict[request.id] = request
         response = order_management_pb2.StringMessage(value=str(id))
-        #print(self.orderDict)
-        #types_keys = [type(k) for k in self.orderDict.keys()]
-        #types_values = [type(k) for k in self.orderDict.values()]
-        #print(types_keys)
-        #print(types_values)
+        print("addOrder")
+        print(self.orderDict)
+        print(type(self.orderDict))
+        types_keys = [type(k) for k in self.orderDict.keys()]
+        types_values = [type(k) for k in self.orderDict.values()]
+        print(types_keys)
+        print(types_values)
         logging.debug('[OrderManagementServicer] addOrder: addedd order with ID: ' + str(id))
         return response
 
@@ -140,6 +142,10 @@ class OrderManagementServicer(order_management_pb2_grpc.OrderManagementServicer)
 
 def serve():
     # Creating gRPC Server
+
+    # Se uso l'opzione options=(('grpc.so_reuseport', 0),) nella creazione del server impongo di non riusare stesso
+	# IP:PORTO per la creazione del server, sollevando un'eccezione RunTimeError
+
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), options=(('grpc.so_reuseport', 0),))
     order_management_pb2_grpc.add_OrderManagementServicer_to_server(OrderManagementServicer(), server)
 

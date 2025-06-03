@@ -28,6 +28,8 @@ def user_agent():
     return user_agent
 
 # test: curl --json '{"text":"prova"}' http://127.0.0.1:5000/json
+# N.B.: --json doesn't work on Mac OSX
+# test: curl -H "Content-Type: application/json" '{"text":"prova"}' http://127.0.0.1:5000/json
 @app.post('/json')
 def json():
    json = request.get_json()
@@ -48,7 +50,6 @@ def hello():
    print("name:", params['name'])       
    print("surname:", params['surname']) 
    return params
-
 
 if __name__ == "__main__":
     #app.run(debug=True)

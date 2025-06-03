@@ -1,2 +1,5 @@
 .DS_Store
 **__pycache__
+*_pb2.py
+*_pb2.pyi
+*_pb2_grpc.py

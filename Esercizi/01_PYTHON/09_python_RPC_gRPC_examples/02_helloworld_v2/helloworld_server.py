@@ -27,7 +27,6 @@ def serve():
 
 	# aggiungo al server l'oggetto istanza del mio sercizio Greeter
 	helloworld_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)
-	helloworld_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)
 
 	# faccio il bind al primo porto libero
 	port = server.add_insecure_port("0.0.0.0:0")
@@ -35,7 +34,7 @@ def serve():
 	# avvio il server
 	server.start()
 
-	print("Server started, listening on " + port)
+	print("Server started, listening on " + str(port))
 
 	# attendo che il server termini
 	server.wait_for_termination()
