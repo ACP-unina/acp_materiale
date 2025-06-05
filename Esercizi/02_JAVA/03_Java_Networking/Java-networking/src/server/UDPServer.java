@@ -13,7 +13,8 @@ public class UDPServer {
 			 * Creazione socket e pacchetto UDP lato server
 			 */
 			
-			DatagramSocket socket = new DatagramSocket ( 8050 );
+			InetAddress host = InetAddress.getByName("localhost");
+			DatagramSocket socket = new DatagramSocket (8050, host);
 			
 			byte[] data = new byte[65508]; 
 			DatagramPacket packet = new DatagramPacket ( data, data.length );

@@ -15,8 +15,9 @@ public class UDPClient {
 			 * Creazione socket e pacchetto UDP lato client
 			 */
 			
-			DatagramSocket socket = new DatagramSocket (  );
-			DatagramPacket packet = new DatagramPacket (  s.getBytes(), s.getBytes().length, InetAddress.getLocalHost(), 8050 );
+			
+			DatagramSocket socket = new DatagramSocket (); //socket lato client per inviare datagrammi
+			DatagramPacket packet = new DatagramPacket (s.getBytes(), s.getBytes().length, InetAddress.getByName("localhost"), 8050 );
 			
 			System.out.println ("[Client]: invio pacchetto UDP..." );
 			socket.send(  packet );
