@@ -13,7 +13,7 @@ public class TCPClient {
 		
 		try{
 			// crea una nuova socker verso l'indirizzo host 127.0.0.1 su porto 8050
-			Socket s = new Socket ("127.0.0.1", 8050 );
+			Socket s = new Socket ("localhost", 8050 );
 			
 			System.out.println ("[Client]: socket creata." );
 			

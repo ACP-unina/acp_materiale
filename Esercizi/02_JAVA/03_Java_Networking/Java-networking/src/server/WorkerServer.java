@@ -25,9 +25,9 @@ public class WorkerServer extends Thread {
 		
 			// attesa e stampa della string inviata dal client
 			System.out.println ("	[Server-Worker]: attesa stringa dal client..." );
-			Integer st = fromClient.readInt();
+			String st = fromClient.readUTF();
 
-			System.out.println ("	[Server-Worker]: stringa ricevuta < " + st + ">. Invio risposta." );
+			System.out.println ("	[Server-Worker]: stringa ricevuta < " + st + " >. Invio risposta." );
 		
 			// invio della stringa di risposta
 			toClient.writeUTF("richiesta ricevuta");

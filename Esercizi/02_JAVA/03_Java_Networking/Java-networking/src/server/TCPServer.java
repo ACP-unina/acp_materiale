@@ -12,8 +12,9 @@ public class TCPServer {
 		// TODO Auto-generated method stub
 		
 		
-		try{
-			ServerSocket server = new ServerSocket(8050);
+		try {
+			InetAddress host = InetAddress.getByName("localhost"); // specifico un host utilizzando la classe InetAddress
+			ServerSocket server = new ServerSocket(8050, 50, host);
 			System.out.println ("[Server]: in attesa su porta 8050." );
 			
 			while ( true ){
