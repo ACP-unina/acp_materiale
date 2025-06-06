@@ -9,8 +9,8 @@ public abstract class DispatcherSkeletonE implements IDispatcher {
 	
 	private int port;
 	
-	public DispatcherSkeletonE ( int p ){
-		port=p;
+	public DispatcherSkeletonE (int port){
+		this.port = port;
 	}
 	
 	public void runSkeleton () {
@@ -34,7 +34,6 @@ public abstract class DispatcherSkeletonE implements IDispatcher {
 			e.printStackTrace();
 		}
 		
-	}
-		
+	}	
 
 }

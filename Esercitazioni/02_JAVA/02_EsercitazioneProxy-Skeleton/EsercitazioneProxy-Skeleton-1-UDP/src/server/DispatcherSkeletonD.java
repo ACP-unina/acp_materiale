@@ -5,19 +5,18 @@ import java.io.*;
 
 import dispatcher.*;
 
-public class DispatcherSkeletonD implements IDispatcher {
-	
-	
-	private IDispatcher dispatcher; 
+public class DispatcherSkeletonD implements IDispatcher {	
+
+	private IDispatcher dispatcher;  //ricordare di soddisfare il basso accoppiamento!
+	// Dependency inversion principle (DIP) o principio di inversione delle dipendenze:
+	// Una classe dovrebbe dipendere dalle astrazioni, non da classi concrete.
+
 	private int port;
 	
-	
-	public DispatcherSkeletonD ( IDispatcher d, int p ){
-		dispatcher = d;
-		port = p;
+	public DispatcherSkeletonD ( IDispatcher dispatcher, int port ){
+		this.dispatcher = dispatcher;
+		this.port = port;
 	}
-	
-	
 	
 	public void runSkeleton () {
 		
@@ -42,7 +41,7 @@ public class DispatcherSkeletonD implements IDispatcher {
 		
 	}
 	
-	
+	//delega
 	public void sendCmd ( int cmd ){
 		dispatcher.sendCmd(cmd);
 	}

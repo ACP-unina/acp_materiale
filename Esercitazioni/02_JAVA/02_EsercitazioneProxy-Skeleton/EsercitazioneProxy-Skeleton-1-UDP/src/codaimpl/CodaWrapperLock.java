@@ -14,7 +14,8 @@ public class CodaWrapperLock extends CodaWrapper {
 	public CodaWrapperLock( Coda c ){
 		super (c);
 		
-		lock = new ReentrantLock();
+		lock = new ReentrantLock(); // non è possibile instanziare lock = new Lock();
+		
 		
 		// a differenza di synchronized, con i lock 
 		// e' possibile creare N condizioni 

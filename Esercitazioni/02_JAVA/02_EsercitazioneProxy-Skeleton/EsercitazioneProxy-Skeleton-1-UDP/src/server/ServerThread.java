@@ -37,7 +37,7 @@ public class ServerThread extends Thread {
 			
 			if ( method.compareTo("sendCmd") == 0 ){
 				
-				x=Integer.valueOf(tokenizer.nextToken());
+				x = Integer.valueOf(tokenizer.nextToken());
 				System.out.println ("	[DISPATCHER THREAD] method: " + method + ", " + x);
 				
 				dispatcher.sendCmd (  x);

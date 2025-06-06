@@ -4,26 +4,13 @@ import coda.CodaWrapper;
 import codaimpl.CodaCircolare;
 import codaimpl.CodaWrapperLock;
 
-import dispatcher.IDispatcher;
-
-
-public class DispatcherImpl implements IDispatcher {		// impl. per delega
-	
-//public class DispatcherImpl extends DispatcherSkeletonE {	// impl. per ereditarieta'
+public class DispatcherImplE extends DispatcherSkeletonE {		// impl. per ereditarietà
 
 	private CodaWrapper codaWrapper; 
 	
-	/*
-	 * in caso di implementazione per erditarieta', DispatcherImpl inizializza port in DispatcherSkeletonE
-	 */
-	//public DispatcherImpl  ( int p, int size ){
-	//	super (p); 
-	//  	CodaCircolare coda = new CodaCircolare(size);
-	//  	codaWrapper = new CodaWrapperLock(coda);
-	//}
+	public DispatcherImplE  (int port, int size){
 	
-	public DispatcherImpl  (int size){
-	
+		super(port); 
 		CodaCircolare coda = new CodaCircolare(size);
 		codaWrapper = new CodaWrapperLock(coda);
 	}

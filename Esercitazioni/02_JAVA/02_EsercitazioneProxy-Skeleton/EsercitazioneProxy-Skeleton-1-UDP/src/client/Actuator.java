@@ -17,6 +17,7 @@ public class Actuator {
 		 * per es.:		java client.Actuator 127.0.0.1 8000
 		 */
 
+		System.out.println("[Actuator] Started...");
 		
 		IDispatcher dispatcher = new DispatcherProxy ( args[0], Integer.valueOf( args[1]) );
 		int cmd=0;

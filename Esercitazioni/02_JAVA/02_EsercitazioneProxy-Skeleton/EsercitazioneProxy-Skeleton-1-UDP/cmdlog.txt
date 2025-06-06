@@ -1,0 +1,15 @@
+command = 1
+command = 1
+command = 3
+command = 1
+command = 2
+command = 1
+command = 2
+command = 2
+command = 0
+command = 2
+command = 2
+command = 1
+command = 1
+command = 2
+command = 1
