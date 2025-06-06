@@ -35,7 +35,7 @@ public class HelloWorldServer {
   private Server server;
   private void start() throws IOException {
     /* The port on which the server should run */
-    int port = 50051;
+    int port = 0;
     /*
      * By default gRPC uses a global, shared Executor.newCachedThreadPool() for gRPC callbacks into
      * your application. This is convenient, but can cause an excessive number of threads to be
@@ -50,7 +50,7 @@ public class HelloWorldServer {
         .addService(new GreeterImpl())
         .build()
         .start();
-    System.out.println("Server started, listening on " + port);
+    System.out.println("Server started, listening on " + server.getPort());
     Runtime.getRuntime().addShutdownHook(new Thread() {
       @Override
       public void run() {
@@ -99,7 +99,9 @@ public class HelloWorldServer {
 
     @Override
     public void sayHello(HelloRequest req, StreamObserver<HelloReply> responseObserver) {
+      System.out.println("[SERVER JAVA GRPC] Invoked sayHello");
       HelloReply reply = HelloReply.newBuilder().setMessage("Hello " + req.getName()).build();
+      System.out.println("[SERVER JAVA GRPC] Set reply and send...");
       responseObserver.onNext(reply);
       responseObserver.onCompleted();
     }
