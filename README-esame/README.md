@@ -33,12 +33,15 @@ Fare attenzione al separatore ``:`` al termine del path specificato.
 
 N.B.: La dashboard è disponibile solo dopo aver avviato ActiveMQ
 
-### GRPC 
+### GRPC - Python
 
 * Per la compilazione, posizionarsi nella cartella che contiene il file .proto ed utilizzare il seguente comando: ``python -m grpc_tools.protoc -I. --python_out=. --pyi_out=. --grpc_python_out=. ./nome_file.proto``
 
 * Per creare un server, generando un'eccezione se il porto è già utilizzato, immettere la segente opzione nella creazione del server GRPC: ``options=(('grpc.so_reuseport', 0),)``
 
+### GRPC - Java
+
+* Per la compilazione, posizionarsi nella cartella che contiene il file .proto ed utilizzare il seguente comando: ``protoc --java_out=. --grpc-java_out=. --plugin=protoc-gen-grpc-java=/PATH/TO/protoc-gen-grpc-java-plugin nome_file.proto``
 
 ### Flask
 
