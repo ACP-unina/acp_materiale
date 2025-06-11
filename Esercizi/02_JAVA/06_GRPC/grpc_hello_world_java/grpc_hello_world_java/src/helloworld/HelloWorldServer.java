@@ -5,6 +5,7 @@ package helloworld;
 import io.grpc.Grpc;
 import io.grpc.InsecureServerCredentials;
 import io.grpc.Server;
+import io.grpc.ServerBuilder;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
@@ -23,11 +24,22 @@ public class HelloWorldServer {
     int port = 0;
     
     ExecutorService executor = Executors.newFixedThreadPool(2);
+    
     server = Grpc.newServerBuilderForPort(port, InsecureServerCredentials.create())
         .executor(executor)
         .addService(new GreeterImpl())
         .build()
         .start();
+    
+    /* EQUIVALENTE
+
+    ServerBuilder<?> serverBuilder = Grpc.newServerBuilderForPort(port, InsecureServerCredentials.create());
+    serverBuilder.executor(executor);
+    serverBuilder.addService(new GreeterImpl());
+    Server server = serverBuilder.build();
+    server.start();
+    */    
+
     System.out.println("[HelloWorldServer] Server started, listening on " + server.getPort());
     
     /*
@@ -62,8 +74,8 @@ public class HelloWorldServer {
   
   public static void main(String[] args) throws IOException, InterruptedException {
     final HelloWorldServer hello_server = new HelloWorldServer();
-    hello_server.start();
-    //hello_server.getServer().awaitTermination();
+    hello_server.start(); // start routine will await for termination
+
   } 
   
 }

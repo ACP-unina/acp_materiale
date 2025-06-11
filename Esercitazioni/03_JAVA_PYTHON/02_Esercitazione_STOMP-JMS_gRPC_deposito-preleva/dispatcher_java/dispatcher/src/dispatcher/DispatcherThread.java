@@ -53,10 +53,9 @@ public class DispatcherThread extends Thread{
                         result = new String("-1");
                         
                     }
-
-                    
-                    
+   
                 }
+                
                 else if(message.contains("deposita")){
 
                     // Deposito tramite RPC JAVA deposita

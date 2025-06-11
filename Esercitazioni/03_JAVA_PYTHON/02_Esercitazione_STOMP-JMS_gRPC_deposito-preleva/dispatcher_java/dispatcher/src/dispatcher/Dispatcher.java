@@ -19,7 +19,7 @@ public class Dispatcher {
 		
 		/*
 		 * Il dispatcher crea una destination di coda richieste per parlare con un client Python
-		 * Una volta ricevuta la richiesta (asincrona tramite MessageListener) di operazione parlerà tramite Proxy-Skeleton (socket)
+		 * Una volta ricevuta la richiesta (asincrona tramite MessageListener) di operazione parlerà tramite GRPC
 		 * verso il server
 		 */
 
@@ -35,6 +35,7 @@ public class Dispatcher {
 		properties.put("queue.request", "request");
 		properties.put("queue.response", "response");
 		
+		ManagedChannel channel = null;
 		try {
 			
 			Context jndiContext = new InitialContext(properties);
@@ -55,8 +56,9 @@ public class Dispatcher {
 
 			/// JAVA GRPC client-siede
 			/// Creo il managed channel, creo lo stub e invoco il metodo non appena ricevo il messaggio
-			ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create()).build();
+			channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create()).build();
 
+			// Creo lo stub e lo passo al JMS message listener
 			MagazzinoGrpc.MagazzinoBlockingStub blockingStub = MagazzinoGrpc.newBlockingStub(channel);
 			
 			DispatcherMsgListener listener = new DispatcherMsgListener(qc, blockingStub);
@@ -65,6 +67,7 @@ public class Dispatcher {
 			
 			System.out.println("Dispatcher avviato - comunicazione lato server su porto: " + port);
 
+			
 			/*try {
 				channel.shutdownNow().awaitTermination(60, TimeUnit.SECONDS);
 			} catch (InterruptedException e) {
@@ -77,7 +80,14 @@ public class Dispatcher {
 			e.printStackTrace();
 		} catch (JMSException e) {
 			e.printStackTrace();
-		}		
+		} finally {
+			try {
+				channel.shutdownNow().awaitTermination(60, TimeUnit.SECONDS);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

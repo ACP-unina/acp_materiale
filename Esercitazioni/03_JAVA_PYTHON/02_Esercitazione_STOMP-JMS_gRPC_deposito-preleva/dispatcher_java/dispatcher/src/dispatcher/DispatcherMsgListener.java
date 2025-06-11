@@ -23,6 +23,7 @@ public class DispatcherMsgListener implements MessageListener {
 		
 		TextMessage msg = (TextMessage)arg0;
 		
+		// ogni qual volta ricevuto un messaggio di richiesta JMS schedulo un thread per la gestione
 		DispatcherThread dt = new DispatcherThread (blockingStub, qconnection, msg);
 		dt.start();
 		
