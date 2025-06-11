@@ -1,0 +1,17 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "/Users/ldesi/apache-activemq-5.16.6/activemq-all-5.16.6.jar",
+        "/Users/ldesi/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Teaching/ACP/acp_materiale/java_grpc_dependencies/failureaccess-1.0.jar",
+        "/Users/ldesi/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Teaching/ACP/acp_materiale/java_grpc_dependencies/grpc-api-1.73.0.jar",
+        "/Users/ldesi/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Teaching/ACP/acp_materiale/java_grpc_dependencies/grpc-core-1.73.0.jar",
+        "/Users/ldesi/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Teaching/ACP/acp_materiale/java_grpc_dependencies/grpc-netty-shaded-1.73.0.jar",
+        "/Users/ldesi/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Teaching/ACP/acp_materiale/java_grpc_dependencies/grpc-protobuf-1.73.0.jar",
+        "/Users/ldesi/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Teaching/ACP/acp_materiale/java_grpc_dependencies/grpc-protobuf-lite-1.73.0.jar",
+        "/Users/ldesi/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Teaching/ACP/acp_materiale/java_grpc_dependencies/grpc-stub-1.73.0.jar",
+        "/Users/ldesi/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Teaching/ACP/acp_materiale/java_grpc_dependencies/guava-33.4.8-jre.jar",
+        "/Users/ldesi/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Teaching/ACP/acp_materiale/java_grpc_dependencies/perfmark-api-0.26.0.jar",
+        "/Users/ldesi/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Teaching/ACP/acp_materiale/java_grpc_dependencies/protobuf-java-4.31.1.jar"
+    ]
+}

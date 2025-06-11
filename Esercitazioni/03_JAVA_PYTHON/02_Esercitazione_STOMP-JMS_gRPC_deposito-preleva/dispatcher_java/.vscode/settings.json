@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [],
+    "java.project.sourcePaths": [
+        "dispatcher/src"
+    ],
+    "java.project.outputPath": "dispatcher/bin"
+}

@@ -4,3 +4,4 @@
 *_pb2.pyi
 *_pb2_grpc.py
 bin/
+*.class

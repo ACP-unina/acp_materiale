@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+package dispatcher;
+
+service Magazzino {
+  
+  rpc deposita (Articolo) returns (Empty) {}
+  rpc preleva (Empty) returns (Articolo) {}
+}
+
+
+message Articolo {
+  int64 valore = 1;
+}
+
+
+message Empty {
+  
+}
