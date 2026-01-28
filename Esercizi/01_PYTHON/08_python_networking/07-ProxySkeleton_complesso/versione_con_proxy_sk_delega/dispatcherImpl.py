@@ -13,7 +13,7 @@ class dispatcherImpl(DispatcherService): # RealSubject estende Skeleton che impl
 
     def sendCmd(self, value):
         #print(f'[dispatcherImpl sendCmd] ref to queue: {self.queue}')
-        logging.info()f'[dispatcherImpl sendCmd] ref to queue: {self.queue}'
+        logging.info(f'[dispatcherImpl sendCmd] ref to queue: {self.queue}')
         self.queue.put(value)
     
     def getCmd(self):
