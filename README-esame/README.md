@@ -54,10 +54,4 @@ N.B.: La dashboard è disponibile solo dopo aver avviato ActiveMQ
 * E' possibile verificare la connection string attraverso la command line ``mongosh`` 
 
 
-### Creazione ZIP file per upload su github classroom
-* Aprire un terminale
-* Posizionarsi (utilizzando il comando ``cd``) nel path che contiene la cartella con il codice sviluppato
-* Digitare il seguente comando
-``zip -r NOME_COGNOME_MATRICOLA_DOCENTE.zip NOME_CARTELLA_CODICE``
-
 
