@@ -16,4 +16,4 @@ T.start()
 
 # main thread stop execution till 5 sec.
 time.sleep(5)
-print('main Thread execution')
+print('main Thread terminate execution!')

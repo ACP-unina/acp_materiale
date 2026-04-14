@@ -49,7 +49,7 @@ class consumerThread(threading.Thread):
         
             while not an_item_is_available(self.queue):
                 logging.debug('\t\t\tWaiting')
-                self.consumer_cv.wait() ## non posso consumare perchè non c'è spazio disp.
+                self.consumer_cv.wait() ## non posso consumare perchè non c'è un elemento disponibile
         
             time.sleep(1.0)
             item = get_an_available_item(self.queue)
@@ -57,6 +57,7 @@ class consumerThread(threading.Thread):
 
             logging.debug('\t\t\tNotify')
             self.producer_cv.notify() ### notifico i produttori che sono sospesi
+                                      ### NOTA: questo funziona perchè l'oggetto producer_cv condivide lo stesso lock con l'oggetto consumer_cv
 
         logging.debug('\t\t\tReleased lock')
 
@@ -69,15 +70,14 @@ def produce_one_item(producer_cv, consumer_cv, queue):
 
         while not a_space_is_available(queue):
             logging.debug('Waiting')
-            producer_cv.wait()
+            producer_cv.wait() ## non posso produrre perchè non c'è spazio disponibile
 
         time.sleep(1.0)
         item = make_an_item_available(queue)
         logging.debug('Item: %r', item)
 
-
         logging.debug('Notify')
-        consumer_cv.notify()
+        consumer_cv.notify() ### questo funziona perchè l'oggetto consumer_cv condivide lo stesso lock con l'oggetto producer_cv
 
     logging.debug('Released lock')
 
@@ -88,9 +88,15 @@ def main():
     queue = []
 
     # generating the condition variable
+    """
+    uso un Lock per la procuder_cv, potrei usare anche RLock ma non avendo necessità di acquisire più volte il lock
+    durante la produzione o consumazione potrebbe essere solo un problema se non implemementiamo correttamente
+    la logica di sincronizzazione
+    """
+
     cv_lock = threading.Lock()
-    producer_cv = threading.Condition(lock=cv_lock) # uso un Lock per la procuder_cv, non posso usare un RLock
-    consumer_cv = threading.Condition(lock=cv_lock) # uso un Lock per la consumer_cv, non posso usare un RLock
+    producer_cv = threading.Condition(lock=cv_lock) 
+    consumer_cv = threading.Condition(lock=cv_lock) 
 
     consumers = []
     producers = []

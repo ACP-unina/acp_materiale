@@ -14,4 +14,4 @@ T = Thread(target = thread_1, daemon=True)
 # starting of Thread T
 T.start()                           
 time.sleep(5)
-print('this is Main Thread') 
+print('main Thread terminate execution!')
