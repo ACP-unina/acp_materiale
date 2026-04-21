@@ -26,7 +26,7 @@ def get_an_available_item(queue):
 
 
 def make_an_item_available(queue):
-    item = randint(0, 100)
+    item = randint(0, 100) 
     queue.append(item)
 
     return item
