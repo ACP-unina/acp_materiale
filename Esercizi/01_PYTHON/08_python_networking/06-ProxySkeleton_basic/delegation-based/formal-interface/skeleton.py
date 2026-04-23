@@ -21,21 +21,21 @@ def thd_fun(c, self):
 class Skeleton(ServiceInterface):
     """
     In questo caso, "attivo" la delega, ovvero:
-        - La classe Skeleton implementa l'interfaccia Subject e non è una classe astratta
+        - La classe Skeleton implementa l'interfaccia ServiceInterface e non è una classe astratta
         
-        - Skeleton implementa Subject ma NON implementa esplicitamente il corpo della funzione request
-            delegando l'implementazione e l'esecuzione a RealSubject
+        - Skeleton implementa ServiceInterface ma NON implementa esplicitamente il corpo della funzione inverti_stringa
+            delegando l'implementazione e l'esecuzione a ServiceImpl
 
-        - Utilizza un riferimento a chi implementa veramente Subject, ovvero RealSubject (vedi __init__ e self.subject)
+        - Utilizza un riferimento a chi implementa veramente Subject, ovvero ServiceImpl (vedi __init__ e self.subject)
     """
 
-    def __init__(self, port, subject):
+    def __init__(self, port, serviceImpl_ref):
         self.port = port
-        self.subject = subject
+        self.serviceImpl_ref = serviceImpl_ref
 
     # Il metodo request non è astratto, e delego l'esecuzione del metodo all'implementatore, RealSubject.
     def inverti_stringa(self, data):
-        return self.subject.inverti_stringa(data)
+        return self.serviceImpl_ref.inverti_stringa(data)
 
     def run_skeleton(self):
         

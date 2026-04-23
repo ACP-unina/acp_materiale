@@ -13,9 +13,10 @@ class Proxy(ServiceInterface):
 
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((IP, self.port))
-        s.send(message.encode("utf-8"))
+        s.send(message.encode("utf-8")) #manda la richiesta su socket del messaggio da invertire
 
-        data = s.recv(BUFFER_SIZE)
-        print ("received data: " + data.decode("utf-8"))
+        data = s.recv(BUFFER_SIZE) #ricevi il messaggio invertito
 
         s.close()
+
+        return data
