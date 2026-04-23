@@ -1,12 +1,12 @@
-from interface import Subject
+from interface import ServiceInterface
 import socket, sys
 
-class Proxy(Subject):
+class Proxy(ServiceInterface):
     
     def __init__(self, port):
         self.port = port
 
-    def request(self, message):
+    def inverti_stringa(self, message):
 
         IP = 'localhost'
         BUFFER_SIZE = 1024

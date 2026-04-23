@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-class Subject(ABC):
+class ServiceInterface(ABC):
 
     @abstractmethod
-    def request(self, data):
+    def inverti_stringa(self, data):
         pass

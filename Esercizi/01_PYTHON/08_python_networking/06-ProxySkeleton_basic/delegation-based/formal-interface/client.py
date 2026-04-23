@@ -11,4 +11,4 @@ if __name__ == "__main__":
     
     print("Client: Generating request on port = ", PORT, " with message = ", MESSAGE)
     proxy = Proxy(int(PORT))
-    proxy.request(MESSAGE)
+    proxy.inverti_stringa(MESSAGE)

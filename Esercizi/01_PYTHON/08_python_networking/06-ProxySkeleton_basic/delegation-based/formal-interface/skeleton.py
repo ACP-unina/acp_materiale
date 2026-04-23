@@ -1,8 +1,24 @@
-from interface import Subject
-import socket, sys
+from interface import ServiceInterface
+import socket, sys, threading
+
+# thread function
+def thd_fun(c, self):
+
+
+    # data received from client
+    data = c.recv(1024)
+    
+    result = self.inverti_stringa(data)
+
+    # send back reversed string to client
+    c.send(result)
+
+    # connection closed
+    c.close()
+
 
 # Il nostro server Skeleton
-class Skeleton(Subject):
+class Skeleton(ServiceInterface):
     """
     In questo caso, "attivo" la delega, ovvero:
         - La classe Skeleton implementa l'interfaccia Subject e non è una classe astratta
@@ -18,8 +34,8 @@ class Skeleton(Subject):
         self.subject = subject
 
     # Il metodo request non è astratto, e delego l'esecuzione del metodo all'implementatore, RealSubject.
-    def request(self, data):
-        return self.subject.request(data)
+    def inverti_stringa(self, data):
+        return self.subject.inverti_stringa(data)
 
     def run_skeleton(self):
         
