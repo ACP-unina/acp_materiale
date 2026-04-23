@@ -8,6 +8,7 @@ if __name__ == "__main__":
         MESSAGE = sys.argv[2]
     except IndexError:
         print("Please, specify PORT and MESSAGE args...")
+        sys.exit(-1)
     
     print("Client: Generating request on port = ", PORT, " with message = ", MESSAGE)
     proxy = Proxy(int(PORT))

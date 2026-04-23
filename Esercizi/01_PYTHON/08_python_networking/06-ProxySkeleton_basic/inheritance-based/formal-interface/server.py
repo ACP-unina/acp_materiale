@@ -1,5 +1,4 @@
 from serviceImpl import ServiceImpl
-from skeleton import Skeleton
 import threading, sys
 
 
@@ -9,6 +8,7 @@ if __name__ == "__main__":
         PORT = sys.argv[1]
     except IndexError:
         print("Please, specify PORT arg")
+        sys.exit(-1)
     
     print("Server running")
 
