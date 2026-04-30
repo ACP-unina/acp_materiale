@@ -4,10 +4,10 @@ import grpc
 import helloworld_pb2
 import helloworld_pb2_grpc
 
-### crea una classe Greeter che implementa il servizio GreeterServicer
+### crea una classe GreeterImpl che estende GreeterServicer che è il nostro Skeleton
 ### in questo caso implementiamo il metodo SayHello
 
-class Greeter(helloworld_pb2_grpc.GreeterServicer):
+class GreeterImpl(helloworld_pb2_grpc.GreeterServicer):
 	def SayHello(self, request, context):
 		print("[server] SayHello method invoked, returning response...")
 		return helloworld_pb2.HelloReply(message="Hello, %s!" % request.name)
@@ -20,8 +20,8 @@ def serve():
 	# ALERT: i ThreadPool sono quelli del package concurrent e non multiprocess. Alcune diff in: https://stackoverflow.com/questions/20776189/concurrent-futures-vs-multiprocessing-in-python-3
 	server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 
-	# aggiungo al server l'oggetto istanza del mio sercizio Greeter
-	helloworld_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)
+	# aggiungo al server l'oggetto istanza del mio implementatore GreeterImpl
+	helloworld_pb2_grpc.add_GreeterServicer_to_server(GreeterImpl(), server)
 
 	# faccio il bind con localhost al primo porto libero
 	port = server.add_insecure_port("0.0.0.0:0")
