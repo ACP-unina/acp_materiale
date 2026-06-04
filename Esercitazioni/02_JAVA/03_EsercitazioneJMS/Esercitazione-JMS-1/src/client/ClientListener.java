@@ -13,7 +13,7 @@ public class ClientListener implements MessageListener{
 		MapMessage msg = (MapMessage)message;
 		
 		try {
-			System.out.println("[CLIENT-LISTENER] Ricevuto messaggio dalla coda 'Risposta' : " + msg.getInt("valore"));
+			System.out.println("[CLIENT-LISTENER] Ricevuto messaggio dalla coda 'Risposta' : " + msg.getInt("valore") + " - JMSCorrelationID: " +msg.getJMSCorrelationID());
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}

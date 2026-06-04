@@ -22,6 +22,8 @@ public class Client {
 	private static final int N = 10;
 	
 	public static void main(String[] args) throws NamingException, JMSException {
+
+		String corrID = args[0];
 		
 		Hashtable <String, String> p = new Hashtable <String, String>();
 		
@@ -42,23 +44,21 @@ public class Client {
 		qconn.start();
 		
 		QueueSession qsession = qconn.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
-		
+
 		// Setup del receiver per la coda di messaggi Risposta
-		QueueReceiver qr = qsession.createReceiver(queueResponse);
+		// Setto il message selector in maniera tale che il receiver riceva solo i messaggi che contengono il suo correlation ID
+		QueueReceiver qr = qsession.createReceiver(queueResponse, "JMSCorrelationID='" + corrID + "'");
 		ClientListener listener = new ClientListener();
 		qr.setMessageListener(listener);
 		
 		// Setup del sender per la coda di messaggi Richiesta
 		QueueSender sender = qsession.createSender(queueRequest);
-
-		// Uso MapMessage come tipo di messaggio perchè ho messaggi
-		// del tipo key-value (operazione: tipo_operazione) e (id_articolo: valore)
 		MapMessage message = qsession.createMapMessage();
 		
 		// Generazione random e ciclica delle richieste
 		for(int i = 0; i < N; i++){
 			
-			if( i % 2 == 0 ){
+			if(Math.random() < 0.5){
 				
 				//CASO DEPOSITA
 				message.setString("operazione", "deposita");
@@ -66,8 +66,12 @@ public class Client {
 				int randomValue = r.nextInt(100);
 				message.setInt("valore", randomValue);
 				
+				message.setJMSReplyTo(queueResponse);
+
+				message.setJMSCorrelationID("" + corrID);
+				
 				sender.send(message);
-				System.out.println("[CLIENT] Mandato messaggio deposita con valore: " + randomValue);
+				System.out.println("[CLIENT] Mandato messaggio deposita con valore: " + randomValue + " - JMSCorrelationID: " + corrID);
 			}
 			else{
 				//CASO PRELEVA

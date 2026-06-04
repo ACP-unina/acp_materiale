@@ -23,28 +23,12 @@ public class MagazzinoThread extends Thread {
 			
 			
 			if ( op.compareTo("deposita") == 0 ){
-				
 				System.out.println ( "	[MAGAZZINO-THREAD]: operazione = " + mm.getString("operazione") 
 						+ " , valore = " + mm.getInt("valore"));
-
 				coda.inserisci( val );
-
-			} else{
-
-				/*
-				 * Nel caso in cui l'operazione è di prelievo, prelevo l'id_articolo e lo mando al client che mi
-				 * ha fatto richiesta. Sfrutto il metodo getJMSReplyTo per rispondere al client sulla Destination specificata da lui
-				 * (nel client userò il metodo setJMSReplyTo() per settare la proprietà JMSReplyTo). 
-				 */
-
+			}else{
 				System.out.println ( "	[MAGAZZINO-THREAD]: operazione = " + mm.getString("operazione") );
 				val = coda.preleva();
-			
-				/*
-				 * Attenzione, la sessione la devo creare dentro il Thread perchè la session 
-				 * è sempre single-threaded. Se creassi la sessione fuori il thread potrei
-				 * avere problemi di concorrenza
- 				*/
 				
 				QueueSession qsession = qconn.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
 				
@@ -61,11 +45,15 @@ public class MagazzinoThread extends Thread {
 				/*
 				 * Creazione-invio di un MapMessage che restituisce al Client 
 				 * l'id numerico nel caso di una richiesta di tipo preleva. 
+				 * Nel MapMessage inserisco anche il Correlation ID fornito tramite il messaggio di richiesta.
+				 * Questro permetterà al Client di ricevere solo i messaggi di risposta alla sue richieste.
 				 */
 				MapMessage reply = qsession.createMapMessage();
 				
 				reply.setString("operazione", "risultato");
 				reply.setInt("valore", val);
+
+				reply.setJMSCorrelationID(mm.getJMSCorrelationID());
 				
 				qsender.send( reply );
 				
